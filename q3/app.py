@@ -4,6 +4,10 @@ app = Flask(__name__)
 students = {}
 next_id = 1
 
+@app.route('/')
+def home():
+    return "Student API is running!"
+
 @app.route('/students', methods=['GET'])
 def get_students():
     return jsonify(list(students.values()))
@@ -24,3 +28,15 @@ def delete_student(sid):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+# pip install flask
+# python app.py
+
+# # Add a student
+# curl -X POST http://localhost:5000/students \
+#   -H "Content-Type: application/json" \
+#   -d '{"name":"Alice","roll":"CS001"}'
+
+# # List all students
+# curl http://localhost:5000/students
